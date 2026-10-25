@@ -87,11 +87,18 @@ test('all six language resources load with the required public text', () => {
   const resources = context.window.CharityI18n;
   assert.deepEqual(Object.keys(resources), ['zh-TW', 'en', 'vi', 'id', 'th', 'ja']);
   for (const locale of Object.values(resources)) {
-    for (const key of ['noMonthlyRecords', 'noDonationsYet', 'plan1', 'plan2', 'plan3', 'plan4', 'plan5']) {
+    for (const key of ['noMonthlyRecords', 'noDonationsYet', 'lastPublishedLabel', 'noApprovedRecords', 'overviewIntro', 'plan1', 'plan2', 'plan3', 'plan4', 'plan5']) {
       assert.equal(typeof locale[key], 'string');
       assert.ok(locale[key].trim().length > 0);
     }
+    assert.doesNotMatch(locale.overviewIntro, /即時|real[ -]?time/i);
   }
+});
+
+test('prelaunch page exposes the approved-publication status without claiming records exist', () => {
+  const html = read('index.html');
+  assert.match(html, /id="last-published"/);
+  assert.match(html, /data-i18n="noApprovedRecords"/);
 });
 
 test('responsive and reduced-motion styles remain present', () => {

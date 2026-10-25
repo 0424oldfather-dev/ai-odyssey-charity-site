@@ -141,6 +141,8 @@
     const formalStartDate = snapshot.meta ? snapshot.meta.effectiveStartDate : snapshot.formalEffectiveStartDate;
     document.querySelector('.start-status strong').textContent = formalStartDate
       ? formatDate(formalStartDate, language) : t.undecided;
+    text($('last-published'), snapshot.prelaunch || !snapshot.publishedAt
+      ? t.noApprovedRecords : formatDate(snapshot.publishedAt.slice(0, 10), language));
 
     const total = snapshot.totals;
     const showMoney = !snapshot.prelaunch;

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "publishedAt": null,
+  "prelaunch": true,
+  "isDemo": false,
+  "meta": {
+    "currency": "TWD",
+    "effectiveStartDate": "2026-11-01",
+    "allocationPercent": 50
+  },
+  "totals": {
+    "commissionCents": 0,
+    "allocationCents": 0,
+    "donationCents": 0,
+    "balanceCents": 0,
+    "thresholdCents": 100000,
+    "progress": 0,
+    "donationDue": false
+  },
+  "monthly": [],
+  "donations": []
+}

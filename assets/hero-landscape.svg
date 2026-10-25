@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="far" x1="400" y1="255" x2="400" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B9CDD9" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#779BA4" stop-opacity=".47"/>
+    </linearGradient>
+    <linearGradient id="middle" x1="400" y1="347" x2="400" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7EA5AF" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#4E7883" stop-opacity=".7"/>
+    </linearGradient>
+    <linearGradient id="near" x1="400" y1="410" x2="400" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4D7D83" stop-opacity=".76"/>
+      <stop offset="1" stop-color="#285A61" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#F5F7F2" stop-opacity="0"/>
+      <stop offset="1" stop-color="#F5F7F2" stop-opacity=".87"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 443C77 407 112 410 174 357C217 321 247 322 284 345C341 380 371 280 437 277C492 274 516 355 569 338C632 318 672 371 800 332V620H0V443Z" fill="url(#far)"/>
+  <path d="M0 495C80 474 112 439 168 453C242 473 292 361 362 361C425 360 454 431 503 418C572 400 619 365 680 393C738 419 766 413 800 400V620H0V495Z" fill="url(#middle)"/>
+  <path d="M0 531C94 469 140 493 194 484C257 474 290 439 342 452C398 465 437 493 488 465C540 436 571 440 625 461C691 488 737 483 800 454V620H0V531Z" fill="url(#near)"/>
+  <path d="M0 504C144 486 265 495 386 476C530 454 669 470 800 445V620H0V504Z" fill="url(#mist)" opacity=".56"/>
+  <path d="M0 553C160 530 263 545 380 524C528 499 663 515 800 492V620H0V553Z" fill="url(#mist)" opacity=".86"/>
+</svg>

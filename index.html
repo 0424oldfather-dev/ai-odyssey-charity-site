@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="奧德賽禪音 AI Odyssey 公益透明計畫：公開聯盟佣金提撥、每月帳務與捐款紀錄。">
+  <title>AI Odyssey Charity｜公益透明計畫</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="src/i18n.js"></script>
+  <script defer src="src/data-source.js"></script>
+  <script defer src="src/motion.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="AI Odyssey Charity">
+        <!-- Logo slot: currently shows the creator-supplied image; a higher-resolution original can replace this file later. -->
+        <span class="brand-mark" data-logo-slot><img src="assets/ai-odyssey-logo.png" alt="" width="38" height="38"></span>
+        <span class="brand-text"><strong>AI ODYSSEY</strong><small>CHARITY TRANSPARENCY</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#overview" data-i18n="navOverview">公益總覽</a>
+        <a href="#ledger" data-i18n="navLedger">每月明細</a>
+        <a href="#donations" data-i18n="navDonations">歷史捐款</a>
+        <a href="#plan" data-i18n="navPlan">公益計畫</a>
+      </nav>
+      <div class="language-wrap">
+        <span class="globe" aria-hidden="true">◎</span>
+        <label class="sr-only" for="language" data-i18n="language">選擇語言</label>
+        <select id="language" aria-label="選擇語言">
+          <option value="zh-TW">繁體中文</option><option value="en">English</option><option value="vi">Tiếng Việt</option>
+          <option value="id">Bahasa Indonesia</option><option value="th">ภาษาไทย</option><option value="ja">日本語</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroEyebrow">AI ODYSSEY · PUBLIC GOOD</p>
+        <h1 id="hero-title" data-i18n-html="heroTitle">讓每一份支持，<br>都有清楚的去向。</h1>
+        <p class="hero-lead" data-i18n="heroBody">奧德賽禪音 AI Odyssey 將 YouTube Shopping 蝦皮聯盟商家核准且符合資格的佣金提撥 50% 作公益，按月公開計算與捐款紀錄。</p>
+        <a class="primary-link" href="#plan"><span data-i18n="heroLink">閱讀公益計畫</span><span aria-hidden="true">↗</span></a>
+        <div class="start-status"><span data-i18n="startDateLabel">正式起算日</span><strong data-i18n="undecided">2026-11-01</strong></div>
+        <aside class="hero-note">
+          <div><strong data-i18n="heroSideLabel">透明，從每一筆計算開始</strong><p data-i18n="heroSideBody">我們將按月公開公益提撥、捐款紀錄與專款結餘，讓每一份支持都有清楚的去向。</p></div>
+        </aside>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-outer"></div><div class="orbit orbit-middle"></div><div class="orbit orbit-inner"></div>
+        <div class="moon-glow"></div><div class="sun"></div><div class="art-horizon"></div>
+        <div class="landscape"></div><div class="mist mist-one"></div><div class="mist mist-two"></div>
+        <div class="art-caption">GOODNESS<br>IN MOTION<span>✦</span></div>
+      </div>
+    </section>
+
+    <section id="overview" class="section overview-section">
+      <div class="shell">
+        <div class="section-head"><div><p class="eyebrow" data-i18n="overviewEyebrow">01 / OVERVIEW</p><h2 data-i18n="overviewTitle">公益總覽</h2><p class="section-intro" data-i18n="overviewIntro">同一份帳務資料，即時呈現提撥與支出的關係。</p></div></div>
+        <p id="data-error" class="data-error" role="alert" hidden></p>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">↙</span><h3 data-i18n="totalCommission">累計商家核准佣金</h3><p class="stat-value" id="total-commission">—</p><span class="stat-index">01</span></article>
+          <article class="stat-card"><span class="stat-icon">✳</span><h3 data-i18n="totalAllocation">累計公益提撥</h3><p class="stat-value" id="total-allocation">—</p><span class="stat-index">02</span></article>
+          <article class="stat-card"><span class="stat-icon">↗</span><h3 data-i18n="totalDonation">累計已捐款</h3><p class="stat-value" id="total-donation">—</p><span class="stat-index">03</span></article>
+          <article class="stat-card stat-card-accent"><span class="stat-icon">◉</span><h3 data-i18n="reserveBalance">待捐公益結餘</h3><p class="stat-value" id="reserve-balance">—</p><span class="stat-index">04</span></article>
+        </div>
+        <div class="threshold-card">
+          <div class="threshold-copy"><div class="threshold-icon" aria-hidden="true">◌</div><div><p class="eyebrow" data-i18n="thresholdTitle">下次捐款門檻</p><h3 id="threshold-amount">NT$1,000</h3><p data-i18n="thresholdRule">待捐餘額達 NT$1,000 時安排捐出當時餘額；門檻不是捐款上限。</p></div></div>
+          <div class="threshold-progress"><div class="progress-meta"><span id="threshold-status">—</span><strong id="threshold-percent">—</strong></div><div class="progress-track" id="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="門檻進度"><span id="progress-fill"></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ledger" class="section ledger-section"><div class="shell">
+      <div class="section-head"><div><p class="eyebrow" data-i18n="ledgerEyebrow">02 / MONTHLY RECORD</p><h2 data-i18n="ledgerTitle">每月明細</h2><p class="section-intro" data-i18n="ledgerIntro">提撥按商家核准月份歸屬；已付款捐款列於實際付款月份。核准佣金不等於銀行已付款。</p></div></div>
+      <div class="table-wrap" tabindex="0" aria-label="Monthly ledger"><table><thead><tr><th scope="col" data-i18n="month">月份</th><th scope="col" data-i18n="commission">商家核准佣金</th><th scope="col" data-i18n="allocation">公益提撥</th><th scope="col" data-i18n="donationExpense">捐款支出</th><th scope="col" data-i18n="closingBalance">期末待捐結餘</th></tr></thead><tbody id="monthly-body"></tbody></table></div>
+      <p class="table-note"><span aria-hidden="true">ⓘ</span><span data-i18n="ledgerNote">未核准、資料待核對、起算日前核准及歷史測試項目不計入；未付款捐款不列支出。</span></p>
+    </div></section>
+
+    <section id="donations" class="section donations-section"><div class="shell">
+      <div class="section-head"><div><p class="eyebrow" data-i18n="donationsEyebrow">03 / DONATIONS</p><h2 data-i18n="donationsTitle">歷史捐款</h2><p class="section-intro" data-i18n="donationsIntro">點選紀錄可查看用途與付款狀態。收據僅私人保存，不提供公開下載。</p></div></div>
+      <div class="donation-list" id="donation-list"></div>
+    </div></section>
+
+    <section id="plan" class="section plan-section"><div class="shell">
+      <div class="plan-header"><p class="eyebrow" data-i18n="planEyebrow">04 / OUR COMMITMENT</p><h2 data-i18n="planTitle">公益計畫</h2><p class="section-intro" data-i18n="planIntro">關於這筆公益專款的來源、規則與公開方式。</p></div>
+      <div class="plan-grid">
+        <article class="plan-card"><span>01</span><h3 data-i18n="plan1Title">公益來源</h3><p data-i18n="plan1">本站公益來源為奧德賽禪音 AI Odyssey 的 YouTube Shopping 蝦皮聯盟佣金。只有商家正式核准、符合資格的直接、間接或可核對批次佣金，才納入公益計算；一般 YouTube 廣告收益不列入。</p></article>
+        <article class="plan-card"><span>02</span><h3 data-i18n="plan2Title">50% 提撥承諾</h3><p data-i18n="plan2">自 2026 年 11 月 1 日起，每筆符合資格的商家核准佣金提撥 50%，按筆計算至新臺幣分位並四捨五入。商家核准佣金不等於已收到銀行付款；後續平台匯款僅供對帳，不再次提撥。</p></article>
+        <article class="plan-card"><span>03</span><h3 data-i18n="plan3Title">捐款與公開</h3><p data-i18n="plan3">待捐餘額達 NT$1,000 時，安排捐出當時待捐餘額，門檻不是捐款金額上限。Owner 可以私人資金先行支付；只有付款完成的捐款才扣除餘額。按月公開核准佣金、提撥、實際捐款與結餘。</p></article>
+        <article class="plan-card"><span>04</span><h3 data-i18n="plan4Title">起算與排除</h3><p data-i18n="plan4">以可查證的商家核准日期判斷是否自 2026 年 11 月 1 日起納入。此前核准的佣金不追溯；豆漿粉、電腦桌等歷史測試佣金永久排除。未核准或資料不明者列待核對。</p></article>
+        <article class="plan-card plan-card-wide"><span>05</span><h3 data-i18n="plan5Title">給觀眾的說明</h3><p data-i18n="plan5">這是頻道將自身聯盟佣金回饋公益的紀錄，不向觀眾募款。公開捐款日期、機構、用途與金額；訂單、購買者資訊、私人備註及 PDF 收據不公開。</p></article>
+      </div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><div><div class="footer-brand">AI ODYSSEY <span>✳</span> CHARITY</div><p data-i18n="footerLine">用清楚的紀錄，持續實踐小小的善意。</p></div></div></footer>
+</body>
+</html>

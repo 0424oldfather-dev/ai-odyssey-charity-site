@@ -1,0 +1,9 @@
+{
+  "name": "ai-odyssey-charity-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Odyssey Charity public static transparency site",
+  "scripts": {
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+node_modules/
+coverage/
+.env
+.env.*
+*.pdf
+receipts/
+private/
+*.token
+*.credentials*

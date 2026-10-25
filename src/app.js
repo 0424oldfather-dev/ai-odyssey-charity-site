@@ -23,6 +23,12 @@
     return new Intl.DateTimeFormat(resources[language].locale, { year: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(year, monthNumber - 1, 1)));
   }
 
+  function hasApprovedRecords(publicSnapshot) {
+    const total = publicSnapshot.totals;
+    return publicSnapshot.monthly.length > 0 || publicSnapshot.donations.length > 0 ||
+      total.commissionCents > 0 || total.allocationCents > 0 || total.donationCents > 0 || total.balanceCents > 0;
+  }
+
   function cell(value) {
     return text(document.createElement('td'), value);
   }
@@ -141,8 +147,14 @@
     const formalStartDate = snapshot.meta ? snapshot.meta.effectiveStartDate : snapshot.formalEffectiveStartDate;
     document.querySelector('.start-status strong').textContent = formalStartDate
       ? formatDate(formalStartDate, language) : t.undecided;
-    text($('last-published'), snapshot.prelaunch || !snapshot.publishedAt
-      ? t.noApprovedRecords : formatDate(snapshot.publishedAt.slice(0, 10), language));
+    if (snapshot.prelaunch || !snapshot.publishedAt) {
+      text($('last-published'), t.noApprovedRecords);
+    } else {
+      const localPublicationDate = window.CharitySnapshotValidation.publicationDateInTaipei(snapshot.publishedAt);
+      const publicationText = formatDate(localPublicationDate, language);
+      text($('last-published'), hasApprovedRecords(snapshot)
+        ? publicationText : publicationText + ' · ' + t.noApprovedRecords);
+    }
 
     const total = snapshot.totals;
     const showMoney = !snapshot.prelaunch;

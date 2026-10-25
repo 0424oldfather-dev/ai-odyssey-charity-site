@@ -57,6 +57,14 @@
     }
   }
 
+  function publicationDateInTaipei(value) {
+    const parts = new Intl.DateTimeFormat('en-US-u-ca-gregory', {
+      timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(new Date(value));
+    const dateParts = Object.fromEntries(parts.map(part => [part.type, part.value]));
+    return dateParts.year + '-' + dateParts.month + '-' + dateParts.day;
+  }
+
   function validate(snapshot) {
     assertExactKeys(snapshot, allowedKeys.root, 'root');
     if (snapshot.schemaVersion !== 1 || snapshot.isDemo !== false || typeof snapshot.prelaunch !== 'boolean') {
@@ -152,9 +160,9 @@
       }
     } else {
       assertPublishedAt(snapshot.publishedAt);
-      assertDate(snapshot.publishedAt.slice(0, 10), 'publishedAt');
-      if (snapshot.publishedAt.slice(0, 10) < EFFECTIVE_START_DATE) throw new Error('Publication timestamp precedes the official start date');
-      if (!snapshot.monthly.length) throw new Error('Published snapshot must contain a monthly record');
+      const localPublicationDate = publicationDateInTaipei(snapshot.publishedAt);
+      assertDate(localPublicationDate, 'publishedAt in Asia/Taipei');
+      if (localPublicationDate < EFFECTIVE_START_DATE) throw new Error('Publication timestamp precedes the official start date in Asia/Taipei');
     }
     return snapshot;
   }
@@ -166,6 +174,6 @@
     return validate(await response.json());
   }
 
-  window.CharitySnapshotValidation = { validate };
+  window.CharitySnapshotValidation = { validate, publicationDateInTaipei };
   window.CharityDataSource = { load };
 })();

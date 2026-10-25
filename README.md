@@ -24,7 +24,7 @@
 ## 人工核准快照更新流程
 
 1. 在私人帳務端完成核對與人工核准，只匯出公開欄位。
-2. 在公開站的獨立工作副本替換 `data/public-snapshot.json`；正式快照須將 `prelaunch` 設為 `false`，並以 UTC ISO 8601 格式填入 `publishedAt`。
+2. 在公開站的獨立工作副本替換 `data/public-snapshot.json`；正式快照須將 `prelaunch` 設為 `false`，並以 UTC ISO 8601 格式填入 `publishedAt`。畫面顯示及起算日比較統一換算為 `Asia/Taipei` 日期。
 3. 執行 `npm test`。前端會拒絕未知欄位、非法日期或金額、重複捐款編號、月報結餘錯誤，以及月報、捐款明細與總計不一致的快照。
 4. 檢查 Git diff，確認只含核准的公開 JSON，且沒有訂單、備註、收據路徑、Google 資源識別或憑證。
 5. Commit 並 Push 至 Private Repository。待複核通過後，再由 Owner 決定是否發布 GitHub Pages。

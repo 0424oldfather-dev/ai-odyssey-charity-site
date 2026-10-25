@@ -101,6 +101,37 @@ test('prelaunch page exposes the approved-publication status without claiming re
   assert.match(html, /data-i18n="noApprovedRecords"/);
 });
 
+test('a formally published blank snapshot is valid without fictional records', () => {
+  const context = { window: {}, document: { baseURI: 'https://example.test/' }, URL, fetch: async () => ({ ok: false }) };
+  vm.runInNewContext(read('src/data-source.js'), context);
+  const snapshot = JSON.parse(read('data/public-snapshot.json'));
+  snapshot.prelaunch = false;
+  snapshot.publishedAt = '2026-10-31T16:00:00Z';
+  const result = context.window.CharitySnapshotValidation.validate(snapshot);
+  assert.equal(context.window.CharitySnapshotValidation.publicationDateInTaipei(result.publishedAt), '2026-11-01');
+  assert.deepEqual(result.monthly, []);
+  assert.deepEqual(result.donations, []);
+  assert.equal(result.totals.commissionCents, 0);
+  assert.equal(result.totals.donationCents, 0);
+});
+
+test('publication boundary and display date use Asia/Taipei instead of the UTC calendar date', () => {
+  const context = { window: {}, document: { baseURI: 'https://example.test/' }, URL, fetch: async () => ({ ok: false }) };
+  vm.runInNewContext(read('src/data-source.js'), context);
+  const api = context.window.CharitySnapshotValidation;
+  assert.equal(api.publicationDateInTaipei('2026-10-31T16:00:00Z'), '2026-11-01');
+  assert.equal(api.publicationDateInTaipei('2026-10-31T15:59:59Z'), '2026-10-31');
+
+  const tooEarly = JSON.parse(read('data/public-snapshot.json'));
+  tooEarly.prelaunch = false;
+  tooEarly.publishedAt = '2026-10-31T15:59:59Z';
+  assert.throws(() => api.validate(tooEarly), /precedes the official start date in Asia\/Taipei/);
+
+  const app = read('src/app.js');
+  assert.match(app, /publicationDateInTaipei\(snapshot\.publishedAt\)/);
+  assert.match(app, /publicationText \+ ' · ' \+ t\.noApprovedRecords/);
+});
+
 test('responsive and reduced-motion styles remain present', () => {
   const css = read('styles.css');
   assert.match(css, /@media\(max-width:760px\)/);

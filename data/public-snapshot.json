@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "publishedAt": null,
-  "prelaunch": true,
+  "publishedAt": "2026-11-12T16:16:43.182Z",
+  "prelaunch": false,
   "isDemo": false,
   "meta": {
     "currency": "TWD",
@@ -9,14 +9,22 @@
     "allocationPercent": 50
   },
   "totals": {
-    "commissionCents": 0,
-    "allocationCents": 0,
+    "commissionCents": 20200,
+    "allocationCents": 10100,
     "donationCents": 0,
-    "balanceCents": 0,
+    "balanceCents": 10100,
     "thresholdCents": 100000,
-    "progress": 0,
+    "progress": 0.101,
     "donationDue": false
   },
-  "monthly": [],
+  "monthly": [
+    {
+      "month": "2026-11",
+      "commissionCents": 20200,
+      "allocationCents": 10100,
+      "donationCents": 0,
+      "closingBalanceCents": 10100
+    }
+  ],
   "donations": []
 }
